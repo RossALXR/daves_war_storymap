@@ -1,32 +1,32 @@
 const imageManifest = {
-  1: "images/1_SS Dempo - Liverpool March 1941.jpg",
-  2: "images/2_8th Army Clasp.jpg",
-  3: "images/3_Dave -Alexandria his mom received 22-11-1941.jpg",
-  4: "images/4_Uniform Badges- Operation Crusader.jpg",
-  5: "images/5_Matilda_tanks__Tobruk,_Libya,_18_November_1941.jpg",
-  6: "images/6_Letter to mom 19 May 1942.jpg",
-  8: "images/8_Smuts in Western Desert20-23 Nov 1942.jpg",
-  21: "images/21_Solum Bay Offloading water.jpg",
-  23: "images/23_Egypt 1943.jpg",
-  24: "images/24_Africa Star.jpg",
-  25: "images/25_Dave- Africa Service Medal.jpg",
-  31: "images/31_8th Army Base in Emelia Romano Region 1944.jpg",
-  32: "images/32_eighth-army-advance-British-tank-gun-River-Foglia-Italy-September-1944.webp",
-  33: "images/33_Po is waiting for You 2.jpg",
-  34: "images/34_Beyond the Po River.jpg",
+  1: "images/1_SS_Dempo_1941.jpg",
+  2: "images/2_8th_Army_Clasp.jpg",
+  3: "images/3_Dave_Alexandria_received_1941.jpg",
+  4: "images/4_Uniform_Badges_Operation_Crusader.jpg",
+  5: "images/5_Matilda_tanks_Tobruk_Libya_18_November_1941.jpg",
+  6: "images/6_Letter_to_mom_1942.jpg",
+  8: "images/8_Smuts_Nov_1942.jpg",
+  21: "images/21_Solum_Bay_Offloading_water.jpg",
+  23: "images/23_Egypt1943.jpg",
+  24: "images/24_AfricaStar.jpg",
+  25: "images/25_Dave_Africa_Service_Medal.jpg",
+  31: "images/31_8th_Army_Base_Romano_Region_1944.jpg",
+  32: "images/32_eighth_army_advance_British_tank_September_1944.webp",
+  33: "images/33_Po_waiting_2.jpg",
+  34: "images/34_Beyond_the_Po_River.jpg",
   35: "images/35_Venice.jpg",
   36: "images/36_Lignano.jpg",
   37: "images/37_Undine.jpg",
   38: "images/38_Triest.jpg",
-  39: "images/39_Germany Out - News 8 May 1945.jpg",
-  40: "images/40_Dave - Defence Medals.jpg",
-  41: "images/41_1939-1945 Star.jpg",
-  42: "images/42_Dave 1939-1945 Medal.jpg",
-  43: "images/43_Dispatch Rider delivering a message.jpg",
-  44: "images/44_Dog Tag - Dave.jpg",
-  45: "images/45_Five Chevrons for 5 years Service- Dave.jpg",
-  46: "images/46_Italy Star - dave.jpg",
-  47: "images/47_SA Soldiers in Liguria Italy.jpg"
+  39: "images/39_Germany_Out_News_1945.jpg",
+  40: "images/40_Dave_Defence_Medals.jpg",
+  41: "images/41_1939_1945_Star.jpg",
+  42: "images/42_Dave_193_1945Medal.jpg",
+  43: "images/43_Dispatch_Rider_delivering_message.jpg",
+  44: "images/44_Dog_Tag_Dave.jpg",
+  45: "images/45_Five_Chevrons_5yearsService_Dave.jpg",
+  46: "images/46_Italy_Star_dave.jpg",
+  47: "images/47_SA_Soldiers_Liguiria_Italy.jpg"
 };
 
 const stops = [
@@ -52,15 +52,15 @@ const stops = [
     subtitle: "Oct-41",
     coords: [31.20381932, 29.91504835],
     caption: "Photo to Mom",
-    text: "His mom noted 'received 22/11/41 Alexandria on photo'"
+    text: "His Mom noted 'received 22/11/41 Alexandria on photo'"
   },
   {
     id: 4,
-    title: "El Alamein",
+    title: "El Alemein",
     subtitle: "18-Nov-41",
     coords: [30.84475347, 28.94164793],
     caption: "Crusader Badge",
-    text: "Operation Crusader - the battle at El Alamein was won by 25/11/1941"
+    text: "Operation Crusader - the battle at El Alemein was won by 25/11/1941"
   },
   {
     id: 5,
@@ -88,10 +88,10 @@ const stops = [
   },
   {
     id: 8,
-    title: "El Alamein",
-    subtitle: "11/11/1942",
+    title: "El Alemein",
+    subtitle: "11-Nov-42",
     coords: [30.84180761, 28.94095283],
-    caption: "Smuts in Western Desert",
+    caption: "8th Army Clasp",
     text: "2nd battle of El Alamein. The Axis army of Italy and Germany defeated"
   },
   {
@@ -129,7 +129,7 @@ const stops = [
   {
     id: 14,
     title: "Tunis",
-    subtitle: "5/15/1943",
+    subtitle: "15-May-43",
     coords: [36.8065, 10.1815],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -137,7 +137,7 @@ const stops = [
   {
     id: 15,
     title: "Sfax (near Gabes)",
-    subtitle: "5/16/1943",
+    subtitle: "16-May-43",
     coords: [34.7406, 10.7603],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -145,7 +145,7 @@ const stops = [
   {
     id: 16,
     title: "Gabes",
-    subtitle: "5/17/1943",
+    subtitle: "17-May-43",
     coords: [33.8815, 10.0982],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -153,7 +153,7 @@ const stops = [
   {
     id: 17,
     title: "Tripoli",
-    subtitle: "5/18/1943",
+    subtitle: "18-May-43",
     coords: [32.8872, 13.1913],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -161,7 +161,7 @@ const stops = [
   {
     id: 18,
     title: "El Agheila",
-    subtitle: "5/19/1943",
+    subtitle: "19-May-43",
     coords: [30.2467, 19.2047],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -169,7 +169,7 @@ const stops = [
   {
     id: 19,
     title: "Benghazi",
-    subtitle: "5/20/1943",
+    subtitle: "20-May-43",
     coords: [32.1167, 20.0667],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -177,7 +177,7 @@ const stops = [
   {
     id: 20,
     title: "Tobruk",
-    subtitle: "5/21/1943",
+    subtitle: "21-May-43",
     coords: [32.0836, 23.9764],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -185,7 +185,7 @@ const stops = [
   {
     id: 21,
     title: "Sollum",
-    subtitle: "5/22/1943",
+    subtitle: "22-May-43",
     coords: [31.5539, 25.1589],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -193,7 +193,7 @@ const stops = [
   {
     id: 22,
     title: "Mersa Matruh",
-    subtitle: "5/23/1943",
+    subtitle: "23-May-43",
     coords: [31.3543, 27.2373],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -201,7 +201,7 @@ const stops = [
   {
     id: 23,
     title: "Alexandria",
-    subtitle: "5/24/1943",
+    subtitle: "24-May-43",
     coords: [31.2001, 29.9187],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -209,7 +209,7 @@ const stops = [
   {
     id: 24,
     title: "Cairo",
-    subtitle: "5/25/1943",
+    subtitle: "25-May-43",
     coords: [30.0444, 31.2357],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -217,7 +217,7 @@ const stops = [
   {
     id: 25,
     title: "Khatatba",
-    subtitle: "5/26/1943",
+    subtitle: "26-May-43",
     coords: [30.525, 30.82],
     caption: "27th Rd Con Unit",
     text: "Journey back to Cairo"
@@ -225,7 +225,7 @@ const stops = [
   {
     id: 26,
     title: "Port Suez",
-    subtitle: "7/12/1943",
+    subtitle: "12-Jul-43",
     coords: [29.96785974, 32.55013641],
     caption: "Army cards",
     text: "Embarked for Durban on Home leave"
@@ -233,7 +233,7 @@ const stops = [
   {
     id: 27,
     title: "Port Suez",
-    subtitle: "11/6/1943",
+    subtitle: "6-Nov-43",
     coords: [29.96785974, 32.55013641],
     caption: "Army cards",
     text: "Disembarked from SS Orford (from Durban) after Home Leave"
@@ -241,7 +241,7 @@ const stops = [
   {
     id: 28,
     title: "Cairo",
-    subtitle: "12/16/1943",
+    subtitle: "16-Dec-43",
     coords: [30.04400182, 31.23544934],
     caption: "Army cards",
     text: "Transferred to Citizen Military to prepare to leave for Italy"
@@ -249,15 +249,15 @@ const stops = [
   {
     id: 29,
     title: "Helwan",
-    subtitle: "1/1/1944",
+    subtitle: "1-Jan-44",
     coords: [29.8434256, 31.330921],
     caption: "Army cards",
-    text: "Admitted to Hospital No5 after Accidental Injury (Bike accident)"
+    text: "Admitted to Hospital No5 after accidental injury (bike accident)"
   },
   {
     id: 30,
     title: "Alexandria",
-    subtitle: "5/27/1944",
+    subtitle: "27-May-44",
     coords: [31.20381932, 29.91504835],
     caption: "Army cards",
     text: "Discharged from Hospital to Base and left for Italy"
@@ -273,7 +273,7 @@ const stops = [
   {
     id: 32,
     title: "Coriano",
-    subtitle: "9/13/1944",
+    subtitle: "13-Sep-44",
     coords: [43.962139, 12.60289],
     caption: "8th Army Clasp",
     text: "8th Army broke through the Gothic Defence line after this battle"
@@ -281,7 +281,7 @@ const stops = [
   {
     id: 33,
     title: "Emelia Romano Region",
-    subtitle: "3/1/1945",
+    subtitle: "1-Mar-45",
     coords: [44.51767399, 11.27713028],
     caption: "Italy visit",
     text: "Army base was in this region and Dave wanted to visit here in 1984"
@@ -289,7 +289,7 @@ const stops = [
   {
     id: 34,
     title: "Po River at Ferrara",
-    subtitle: "4/28/1945",
+    subtitle: "28-Apr-45",
     coords: [44.888187, 11.618976],
     caption: "Propaganda leaflet",
     text: "The Eighth Army crossed the Po River"
@@ -297,7 +297,7 @@ const stops = [
   {
     id: 35,
     title: "Venice",
-    subtitle: "5/2/1945",
+    subtitle: "2-May-45",
     coords: [45.43959563, 12.32000556],
     caption: "Post cards",
     text: "8th Army advanced pushing out German troops"
@@ -305,7 +305,7 @@ const stops = [
   {
     id: 36,
     title: "Lignano Sabbiadoro",
-    subtitle: "5/4/1945",
+    subtitle: "4-May-45",
     coords: [45.6620536, 13.10727859],
     caption: "Post cards",
     text: "8th Army advanced pushing out German troops"
@@ -313,7 +313,7 @@ const stops = [
   {
     id: 37,
     title: "Udine",
-    subtitle: "5/6/1945",
+    subtitle: "6-May-45",
     coords: [46.07158986, 13.22734407],
     caption: "Post cards",
     text: "8th Army advanced pushing out German troops"
@@ -321,7 +321,7 @@ const stops = [
   {
     id: 38,
     title: "Trieste",
-    subtitle: "5/8/1945",
+    subtitle: "8-May-45",
     coords: [45.65063026, 13.7664945],
     caption: "Newspaper",
     text: "Germany OUT!"
@@ -329,7 +329,7 @@ const stops = [
   {
     id: 39,
     title: "Cairo - Enplaned for Union",
-    subtitle: "8/8/1945",
+    subtitle: "8-Aug-45",
     coords: [30.04551445, 31.23700314],
     caption: "Army cards",
     text: "Demobilised - end of war"
@@ -337,7 +337,7 @@ const stops = [
   {
     id: 40,
     title: "Nairobi",
-    subtitle: "8/9/1945",
+    subtitle: "9-Aug-45",
     coords: [-1.29630618, 36.82677128],
     caption: "Newspaper",
     text: "Plane in Nairobi to re-fuel on the way to South Africa"
