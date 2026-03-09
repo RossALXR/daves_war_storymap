@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WW2 Journey Story Map</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      font-family: Georgia, serif;
+      background: #efe7d6;
+    }
+
+    #app {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+    }
+
+    #map {
+      width: 50%;
+      height: 100%;
+    }
+
+    #panel {
+      width: 50%;
+      height: 100%;
+      padding: 30px;
+      box-sizing: border-box;
+      background: #f6f0e4;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid #c9bca0;
+      overflow-y: auto;
+    }
+
+    .intro-box {
+      padding: 14px 16px;
+      border: 1px solid #d6c8af;
+      background: #fbf7ee;
+      border-radius: 8px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #7b6a4b;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 34px;
+      line-height: 1.1;
+      color: #2d2418;
+    }
+
+    .subtitle {
+      color: #6a5b45;
+      margin-bottom: 15px;
+      font-size: 17px;
+    }
+
+    .image-wrap {
+      margin-bottom: 12px;
+    }
+
+    .image {
+      height: 300px;
+      width: 100%;
+      background: #356aa0;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .image-placeholder {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .caption {
+      font-size: 13px;
+      color: #7d6f58;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    #text {
+      flex: 1;
+      line-height: 1.65;
+      font-size: 18px;
+      color: #2b2419;
+      white-space: pre-line;
+    }
+
+    .controls {
+      margin-top: 22px;
+    }
+
+    .button-row {
+      margin-bottom: 16px;
+    }
+
+    button {
+      padding: 10px 16px;
+      background: #473522;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background: #5a432b;
+    }
+
+    button:disabled {
+      background: #a6957f;
+      cursor: not-allowed;
+    }
+
+    .counter {
+      margin-top: 8px;
+      color: #6d614d;
+      font-size: 14px;
+    }
+
+    .slider-wrap {
+      margin-top: 8px;
+      padding: 12px 14px 16px 14px;
+      border: 1px solid #d6c8af;
+      background: #fbf7ee;
+      border-radius: 8px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      color: #6d614d;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+
+    .year-ticks {
+      position: relative;
+      height: 26px;
+      margin-top: 2px;
+      font-size: 12px;
+      color: #7b6a4b;
+    }
+
+    .year-tick {
+      position: absolute;
+      transform: translateX(-50%);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .year-tick::before {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 8px;
+      background: #bcae93;
+      margin: 0 auto 3px auto;
+    }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 6px;
+      font-family: Arial, sans-serif;
+    }
+
+    .arrow-icon {
+      color: #7a120d;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow:
+        0 0 3px rgba(255,255,255,1),
+        0 0 6px rgba(255,255,255,0.9);
+      line-height: 28px;
+      transform-origin: center center;
+      pointer-events: none;
+    }
+
+    .pulse-marker {
+      width: 18px;
+      height: 18px;
+      background: #ff4d3a;
+      border: 2px solid #5c0f0f;
+      border-radius: 50%;
+      box-sizing: border-box;
+      box-shadow: 0 0 0 rgba(255, 77, 58, 0.6);
+      animation: pulse-ring 1.8s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 77, 58, 0.55);
+      }
+      70% {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 12px rgba(255, 77, 58, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 77, 58, 0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      #app {
+        flex-direction: column;
+      }
+
+      #map, #panel {
+        width: 100%;
+      }
+
+      #map {
+        height: 45vh;
+      }
+
+      #panel {
+        height: 55vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="map"></div>
+
+    <div id="panel">
+      <div class="intro-box">
+        <div class="eyebrow">Family Story Map</div>
+        <div><strong>From Tunisia to Cairo and Beyond</strong></div>
+        <div style="margin-top: 8px; color: #6a5b45;">
+          A step-through journey across North Africa and Italy during the war.
+        </div>
+      </div>
+
+      <div class="eyebrow">Current Stop</div>
+      <h1 id="title"></h1>
+      <div class="subtitle" id="subtitle"></div>
+
+      <div class="image-wrap">
+        <div class="image" id="imageBox">
+          <img id="storyImage" alt="Story image" />
+          <div class="image-placeholder" id="imagePlaceholder">Image</div>
+        </div>
+      </div>
+
+      <div class="caption" id="caption"></div>
+
+      <div id="text"></div>
+
+      <div class="controls">
+        <div class="button-row">
+          <button id="prev">Previous</button>
+          <button id="next">Next</button>
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-header">
+            <div id="sliderStopLabel">Stop 1</div>
+            <div id="sliderDateLabel"></div>
+          </div>
+          <input type="range" id="timelineSlider" min="0" max="0" step="1" value="0" />
+          <div class="year-ticks" id="yearTicks"></div>
+        </div>
+
+        <div class="counter" id="counter"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="stopsarray.js"></script>
+
+  <script>
+    const map = L.map("map", {
+      zoomSnap: 0.1,
+      zoomDelta: 0.25,
+      inertia: true
+    });
+
+    L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+      {
+        attribution: "Tiles © Esri",
+        maxZoom: 19
+      }
+    ).addTo(map);
+
+    const DEFAULT_CENTER = [38.3, 21.7];
+    const DEFAULT_ZOOM = 4.9;
+    map.setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+
+    const routeCoords = stops.map(s => s.coords);
+
+    // Full future route in pale grey
+    const fullRoute = L.polyline(routeCoords, {
+      color: "#b8aea1",
+      weight: 2.5,
+      opacity: 0.55,
+      lineJoin: "round"
+    }).addTo(map);
+
+    const routeLayer = L.layerGroup().addTo(map);
+    const arrowLayer = L.layerGroup().addTo(map);
+    const markerLayer = L.layerGroup().addTo(map);
+
+    let progressLine = null;
+    let activeMarker = null;
+    let animatedLine = null;
+    let animationFrame = null;
+    let index = 0;
+    let previousIndex = 0;
+
+    const titleEl = document.getElementById("title");
+    const subtitleEl = document.getElementById("subtitle");
+    const captionEl = document.getElementById("caption");
+    const textEl = document.getElementById("text");
+    const counterEl = document.getElementById("counter");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+    const timelineSlider = document.getElementById("timelineSlider");
+    const sliderStopLabel = document.getElementById("sliderStopLabel");
+    const sliderDateLabel = document.getElementById("sliderDateLabel");
+    const yearTicksEl = document.getElementById("yearTicks");
+    const storyImageEl = document.getElementById("storyImage");
+    const imagePlaceholderEl = document.getElementById("imagePlaceholder");
+
+    timelineSlider.max = stops.length - 1;
+
+    function parseYear(value) {
+      if (!value) return null;
+      const text = String(value).trim();
+
+      const match4 = text.match(/(19\d{2}|20\d{2})/);
+      if (match4) return parseInt(match4[1], 10);
+
+      const match2 = text.match(/-(\d{2})$/);
+      if (match2) {
+        const yy = parseInt(match2[1], 10);
+        return yy >= 40 ? 1900 + yy : 2000 + yy;
+      }
+
+      return null;
+    }
+
+    function buildYearTicks() {
+      yearTicksEl.innerHTML = "";
+      const yearPositions = new Map();
+
+      stops.forEach((stop, i) => {
+        const y = parseYear(stop.subtitle);
+        if (y !== null && !yearPositions.has(y)) {
+          yearPositions.set(y, i);
+        }
+      });
+
+      const total = Math.max(stops.length - 1, 1);
+
+      Array.from(yearPositions.entries()).forEach(([year, stopIndex]) => {
+        const tick = document.createElement("div");
+        tick.className = "year-tick";
+        tick.style.left = `${(stopIndex / total) * 100}%`;
+        tick.textContent = year;
+        yearTicksEl.appendChild(tick);
+      });
+    }
+
+    function loadStoryImage(stop, i) {
+      const explicitImage = stop.image || stop.imageUrl || stop.photo || "";
+      const fallbackLabel = stop.imageLabel || `Image ${i + 1}`;
+
+      if (explicitImage) {
+        storyImageEl.style.display = "block";
+        imagePlaceholderEl.style.display = "none";
+        storyImageEl.src = explicitImage;
+
+        storyImageEl.onerror = () => {
+          storyImageEl.style.display = "none";
+          imagePlaceholderEl.style.display = "flex";
+          imagePlaceholderEl.textContent = `${fallbackLabel} not found`;
+        };
+
+        storyImageEl.onload = () => {
+          storyImageEl.style.display = "block";
+          imagePlaceholderEl.style.display = "none";
+        };
+      } else {
+        storyImageEl.removeAttribute("src");
+        storyImageEl.style.display = "none";
+        imagePlaceholderEl.style.display = "flex";
+        imagePlaceholderEl.textContent = fallbackLabel;
+      }
+    }
+
+    function styleMarkers(currentIndex) {
+      markers.forEach((marker, i) => {
+        if (i < currentIndex) {
+          marker.setStyle({
+            radius: 4.5,
+            color: "#8b1e1e",
+            weight: 1,
+            fillColor: "#c63c22",
+            fillOpacity: 0.35,
+            opacity: 0.45
+          });
+        } else if (i === currentIndex) {
+          marker.setStyle({
+            radius: 0,
+            color: "#8b1e1e",
+            weight: 0,
+            fillColor: "#c63c22",
+            fillOpacity: 0,
+            opacity: 0
+          });
+        } else {
+          marker.setStyle({
+            radius: 5,
+            color: "#8b1e1e",
+            weight: 1,
+            fillColor: "#c63c22",
+            fillOpacity: 0.9,
+            opacity: 0.9
+          });
+        }
+      });
+    }
+
+    function midpoint(latlng1, latlng2) {
+      return [
+        (latlng1[0] + latlng2[0]) / 2,
+        (latlng1[1] + latlng2[1]) / 2
+      ];
+    }
+
+    function segmentAngleDegrees(latlng1, latlng2) {
+      const dx = latlng2[1] - latlng1[1];
+      const dy = latlng2[0] - latlng1[0];
+      return Math.atan2(dy, dx) * 180 / Math.PI;
+    }
+
+    function drawDirectionArrows(currentIndex) {
+      arrowLayer.clearLayers();
+
+      for (let i = 0; i < currentIndex; i++) {
+        const start = stops[i].coords;
+        const end = stops[i + 1].coords;
+        const mid = midpoint(start, end);
+        const angle = segmentAngleDegrees(start, end);
+
+        const arrowHtml = `
+          <div class="arrow-icon" style="transform: rotate(${angle}deg);">➜</div>
+        `;
+
+        const arrowMarker = L.marker(mid, {
+          icon: L.divIcon({
+            className: "",
+            html: arrowHtml,
+            iconSize: [30, 30],
+            iconAnchor: [15, 15]
+          }),
+          interactive: false,
+          zIndexOffset: 800
+        });
+
+        arrowMarker.addTo(arrowLayer);
+      }
+
+      arrowLayer.bringToFront();
+      markerLayer.bringToFront();
+      if (activeMarker) activeMarker.bringToFront();
+    }
+
+    function clearAnimation() {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+      }
+      if (animatedLine) {
+        routeLayer.removeLayer(animatedLine);
+        animatedLine = null;
+      }
+    }
+
+    function redrawStaticProgressLine(currentIndex) {
+      if (progressLine) {
+        routeLayer.removeLayer(progressLine);
+      }
+
+      const partialRoute = stops.slice(0, currentIndex + 1).map(s => s.coords);
+
+      progressLine = L.polyline(partialRoute, {
+        color: "#d22f27",
+        weight: 5,
+        opacity: 1,
+        lineJoin: "round"
+      }).addTo(routeLayer);
+
+      arrowLayer.bringToFront();
+      markerLayer.bringToFront();
+      if (activeMarker) activeMarker.bringToFront();
+    }
+
+    function animateLatestSegment(fromIndex, toIndex) {
+      clearAnimation();
+
+      if (fromIndex < 0 || toIndex <= 0 || toIndex !== fromIndex + 1) {
+        redrawStaticProgressLine(toIndex);
+        return;
+      }
+
+      if (progressLine) {
+        routeLayer.removeLayer(progressLine);
+      }
+
+      const baseCoords = stops.slice(0, fromIndex + 1).map(s => s.coords);
+
+      progressLine = L.polyline(baseCoords, {
+        color: "#d22f27",
+        weight: 5,
+        opacity: 1,
+        lineJoin: "round"
+      }).addTo(routeLayer);
+
+      const start = stops[fromIndex].coords;
+      const end = stops[toIndex].coords;
+
+      animatedLine = L.polyline([start, start], {
+        color: "#d22f27",
+        weight: 5,
+        opacity: 1,
+        lineJoin: "round"
+      }).addTo(routeLayer);
+
+      const duration = 650;
+      const startTime = performance.now();
+
+      function step(now) {
+        const t = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+
+        const lat = start[0] + (end[0] - start[0]) * eased;
+        const lng = start[1] + (end[1] - start[1]) * eased;
+
+        animatedLine.setLatLngs([start, [lat, lng]]);
+
+        arrowLayer.bringToFront();
+        markerLayer.bringToFront();
+        if (activeMarker) activeMarker.bringToFront();
+
+        if (t < 1) {
+          animationFrame = requestAnimationFrame(step);
+        } else {
+          routeLayer.removeLayer(animatedLine);
+          animatedLine = null;
+
+          if (progressLine) {
+            routeLayer.removeLayer(progressLine);
+          }
+
+          const finalCoords = stops.slice(0, toIndex + 1).map(s => s.coords);
+          progressLine = L.polyline(finalCoords, {
+            color: "#d22f27",
+            weight: 5,
+            opacity: 1,
+            lineJoin: "round"
+          }).addTo(routeLayer);
+
+          arrowLayer.bringToFront();
+          markerLayer.bringToFront();
+          if (activeMarker) activeMarker.bringToFront();
+        }
+      }
+
+      animationFrame = requestAnimationFrame(step);
+    }
+
+    function updateMapViewForStop(i, firstLoad = false) {
+      const stop = stops[i];
+      const isLastStop = i === stops.length - 1;
+      const isNairobi = (stop.title || "").trim().toLowerCase() === "nairobi";
+
+      if (isLastStop || isNairobi) {
+        const cairoStop = stops.find(s =>
+          (s.title || "").trim().toLowerCase().startsWith("cairo")
+        );
+
+        if (cairoStop) {
+          const bounds = L.latLngBounds([stop.coords, cairoStop.coords]);
+          map.fitBounds(bounds, {
+            padding: [40, 40],
+            animate: !firstLoad,
+            duration: 1.2
+          });
+          return;
+        }
+      }
+
+      if (firstLoad) {
+        map.setView(DEFAULT_CENTER, DEFAULT_ZOOM, { animate: false });
+      } else {
+        map.flyTo(DEFAULT_CENTER, DEFAULT_ZOOM, {
+          animate: true,
+          duration: 1.0
+        });
+      }
+    }
+
+    function updateActiveMarker(stop) {
+      if (activeMarker) {
+        map.removeLayer(activeMarker);
+      }
+
+      activeMarker = L.marker(stop.coords, {
+        icon: L.divIcon({
+          className: "",
+          html: `<div class="pulse-marker"></div>`,
+          iconSize: [18, 18],
+          iconAnchor: [9, 9]
+        }),
+        zIndexOffset: 1000
+      }).addTo(map);
+
+      activeMarker.bringToFront();
+      markerLayer.bringToFront();
+      arrowLayer.bringToFront();
+    }
+
+    const markers = stops.map((stop, i) => {
+      const marker = L.circleMarker(stop.coords, {
+        radius: 5,
+        color: "#8b1e1e",
+        weight: 1,
+        fillColor: "#c63c22",
+        fillOpacity: 0.9,
+        opacity: 0.9
+      }).bindPopup(`<b>${i + 1}. ${stop.title}</b><br>${stop.subtitle}`);
+
+      marker.addTo(markerLayer);
+      return marker;
+    });
+
+    function showStop(i, firstLoad = false, animateSegment = false) {
+      const stop = stops[i];
+
+      titleEl.innerText = stop.title || "";
+      subtitleEl.innerText = stop.subtitle || "";
+      captionEl.innerText = stop.caption || "";
+      textEl.innerText = stop.text || "";
+      counterEl.innerText = `Stop ${i + 1} of ${stops.length}`;
+
+      sliderStopLabel.innerText = `Stop ${i + 1} of ${stops.length}`;
+      sliderDateLabel.innerText = stop.subtitle || "";
+      timelineSlider.value = i;
+
+      loadStoryImage(stop, i);
+      updateMapViewForStop(i, firstLoad);
+      updateActiveMarker(stop);
+      styleMarkers(i);
+      drawDirectionArrows(i);
+
+      if (animateSegment) {
+        animateLatestSegment(previousIndex, i);
+      } else {
+        clearAnimation();
+        redrawStaticProgressLine(i);
+      }
+
+      markers[i].openPopup();
+
+      prevBtn.disabled = (i === 0);
+      nextBtn.disabled = (i === stops.length - 1);
+    }
+
+    function goToStop(i, firstLoad = false, animateSegment = false) {
+      previousIndex = index;
+      index = i;
+      showStop(index, firstLoad, animateSegment);
+    }
+
+    nextBtn.onclick = () => {
+      if (index < stops.length - 1) {
+        goToStop(index + 1, false, true);
+      }
+    };
+
+    prevBtn.onclick = () => {
+      if (index > 0) {
+        goToStop(index - 1, false, false);
+      }
+    };
+
+    timelineSlider.addEventListener("input", (e) => {
+      goToStop(parseInt(e.target.value, 10), false, false);
+    });
+
+    buildYearTicks();
+    goToStop(0, true, false);
+  </script>
+</body>
+</html>
