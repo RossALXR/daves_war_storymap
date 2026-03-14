@@ -29,6 +29,17 @@ const imageManifest = {
   47: "images/47_SA_Soldiers_Liguiria_Italy.jpg"
 };
 
+const routedPathFiles = [
+  {
+    key: "libyaRoute",
+    file: "route_libya.geojson"
+  },
+  {
+    key: "italyRoute",
+    file: "route_italy.geojson"
+  }
+];
+
 const stops = [
   {
     id: 1,
@@ -36,7 +47,8 @@ const stops = [
     subtitle: "6-May-41",
     coords: [29.96785974, 32.55013641],
     caption: "Army cards",
-    text: "He arrived on SS Dempo from Durban"
+    text: "He arrived on SS Dempo from Durban",
+    drawLineAfterPoint: true
   },
   {
     id: 2,
@@ -44,7 +56,8 @@ const stops = [
     subtitle: "Sep-41",
     coords: [30.04400182, 31.23544934],
     caption: "8th Army Clasp",
-    text: "8th Army headquarters established in Cairo"
+    text: "8th Army headquarters established in Cairo",
+    drawLineAfterPoint: true
   },
   {
     id: 3,
@@ -52,7 +65,8 @@ const stops = [
     subtitle: "Oct-41",
     coords: [31.20381932, 29.91504835],
     caption: "Photo to Mom",
-    text: "His Mom noted 'received 22/11/41 Alexandria on photo'"
+    text: "His Mom noted 'received 22/11/41 Alexandria on photo'",
+    drawLineAfterPoint: true
   },
   {
     id: 4,
@@ -60,7 +74,8 @@ const stops = [
     subtitle: "18-Nov-41",
     coords: [30.84475347, 28.94164793],
     caption: "Crusader Badge",
-    text: "Operation Crusader - the battle at El Alemein was won by 25/11/1941"
+    text: "Operation Crusader - the battle at El Alemein was won by 25/11/1941",
+    drawLineAfterPoint: false
   },
   {
     id: 5,
@@ -68,7 +83,8 @@ const stops = [
     subtitle: "4-Feb-42",
     coords: [31.601033, 23.475565],
     caption: "8th Army Clasp",
-    text: "8th Army had advanced and re-grouped here"
+    text: "8th Army had advanced and re-grouped here",
+    drawLineAfterPoint: false
   },
   {
     id: 6,
@@ -76,7 +92,8 @@ const stops = [
     subtitle: "19-May-42",
     coords: [31.601033, 23.475565],
     caption: "Letter to mom",
-    text: "Letter posted home via APO (Army Post Office)"
+    text: "Letter posted home via APO (Army Post Office)",
+    drawLineAfterPoint: false
   },
   {
     id: 7,
@@ -84,7 +101,8 @@ const stops = [
     subtitle: "21-Jun-42",
     coords: [31.59204253, 23.48503074],
     caption: "8th Army Clasp",
-    text: "Battle of Gazala - 8th Army were forced to retreat back to Alamein"
+    text: "Battle of Gazala - 8th Army were forced to retreat back to Alamein",
+    drawLineAfterPoint: false
   },
   {
     id: 8,
@@ -92,7 +110,8 @@ const stops = [
     subtitle: "11-Nov-42",
     coords: [30.84180761, 28.94095283],
     caption: "8th Army Clasp",
-    text: "2nd battle of El Alamein. The Axis army of Italy and Germany defeated"
+    text: "2nd battle of El Alamein. The Axis army of Italy and Germany defeated",
+    drawLineAfterPoint: false
   },
   {
     id: 10,
@@ -100,7 +119,8 @@ const stops = [
     subtitle: "20-Mar-43",
     coords: [33.887485, 9.795094],
     caption: "8th Army Clasp",
-    text: "8th Army advanced to push Rommel's troops out of Tunisia"
+    text: "8th Army advanced to push Rommel's troops out of Tunisia",
+    drawLineAfterPoint: false
   },
   {
     id: 11,
@@ -108,7 +128,8 @@ const stops = [
     subtitle: "6-Apr-43",
     coords: [34.112678, 9.982838],
     caption: "8th Army Clasp",
-    text: "8th Army advanced to push Rommel's troops out of Tunisia"
+    text: "8th Army advanced to push Rommel's troops out of Tunisia",
+    drawLineAfterPoint: false
   },
   {
     id: 12,
@@ -116,7 +137,8 @@ const stops = [
     subtitle: "20-Apr-43",
     coords: [36.133847, 10.378048],
     caption: "8th Army Clasp",
-    text: "8th Army advanced to push Rommel's troops out of Tunisia"
+    text: "8th Army advanced to push Rommel's troops out of Tunisia",
+    drawLineAfterPoint: false
   },
   {
     id: 13,
@@ -124,7 +146,8 @@ const stops = [
     subtitle: "6-May-43",
     coords: [37.06292, 10.068617],
     caption: "8th Army Clasp",
-    text: "Rommel's forces surrendered on 13 May 1943"
+    text: "Rommel's forces surrendered on 13 May 1943",
+    drawLineAfterPoint: false
   },
   {
     id: 14,
@@ -132,7 +155,8 @@ const stops = [
     subtitle: "15-May-43",
     coords: [36.8065, 10.1815],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 15,
@@ -140,7 +164,8 @@ const stops = [
     subtitle: "16-May-43",
     coords: [34.7406, 10.7603],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 16,
@@ -148,7 +173,8 @@ const stops = [
     subtitle: "17-May-43",
     coords: [33.8815, 10.0982],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 17,
@@ -156,7 +182,8 @@ const stops = [
     subtitle: "18-May-43",
     coords: [32.8872, 13.1913],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 18,
@@ -164,7 +191,8 @@ const stops = [
     subtitle: "19-May-43",
     coords: [30.2467, 19.2047],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 19,
@@ -172,7 +200,8 @@ const stops = [
     subtitle: "20-May-43",
     coords: [32.1167, 20.0667],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 20,
@@ -180,7 +209,8 @@ const stops = [
     subtitle: "21-May-43",
     coords: [32.0836, 23.9764],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 21,
@@ -188,7 +218,8 @@ const stops = [
     subtitle: "22-May-43",
     coords: [31.5539, 25.1589],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 22,
@@ -196,7 +227,8 @@ const stops = [
     subtitle: "23-May-43",
     coords: [31.3543, 27.2373],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 23,
@@ -204,7 +236,8 @@ const stops = [
     subtitle: "24-May-43",
     coords: [31.2001, 29.9187],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 24,
@@ -212,7 +245,8 @@ const stops = [
     subtitle: "25-May-43",
     coords: [30.0444, 31.2357],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: false
   },
   {
     id: 25,
@@ -220,7 +254,8 @@ const stops = [
     subtitle: "26-May-43",
     coords: [30.525, 30.82],
     caption: "27th Rd Con Unit",
-    text: "Journey back to Cairo"
+    text: "Journey back to Cairo",
+    drawLineAfterPoint: true
   },
   {
     id: 26,
@@ -228,7 +263,8 @@ const stops = [
     subtitle: "12-Jul-43",
     coords: [29.96785974, 32.55013641],
     caption: "Army cards",
-    text: "Embarked for Durban on Home leave"
+    text: "Embarked for Durban on Home leave",
+    drawLineAfterPoint: true
   },
   {
     id: 27,
@@ -236,7 +272,8 @@ const stops = [
     subtitle: "6-Nov-43",
     coords: [29.96785974, 32.55013641],
     caption: "Army cards",
-    text: "Disembarked from SS Orford (from Durban) after Home Leave"
+    text: "Disembarked from SS Orford (from Durban) after Home Leave",
+    drawLineAfterPoint: true
   },
   {
     id: 28,
@@ -244,7 +281,8 @@ const stops = [
     subtitle: "16-Dec-43",
     coords: [30.04400182, 31.23544934],
     caption: "Army cards",
-    text: "Transferred to Citizen Military to prepare to leave for Italy"
+    text: "Transferred to Citizen Military to prepare to leave for Italy",
+    drawLineAfterPoint: true
   },
   {
     id: 29,
@@ -252,7 +290,8 @@ const stops = [
     subtitle: "1-Jan-44",
     coords: [29.8434256, 31.330921],
     caption: "Army cards",
-    text: "Admitted to Hospital No5 after accidental injury (bike accident)"
+    text: "Admitted to Hospital No5 after accidental injury (bike accident)",
+    drawLineAfterPoint: true
   },
   {
     id: 30,
@@ -260,7 +299,8 @@ const stops = [
     subtitle: "27-May-44",
     coords: [31.20381932, 29.91504835],
     caption: "Army cards",
-    text: "Discharged from Hospital to Base and left for Italy"
+    text: "Discharged from Hospital to Base and left for Italy",
+    drawLineAfterPoint: true
   },
   {
     id: 31,
@@ -268,7 +308,8 @@ const stops = [
     subtitle: "1-Jun-44",
     coords: [38.1106545, 15.64286765],
     caption: "8th Army Clasp",
-    text: "8th Army troops landed at this port after Alexandria"
+    text: "8th Army troops landed at this port after Alexandria",
+    drawLineAfterPoint: false
   },
   {
     id: 32,
@@ -276,7 +317,8 @@ const stops = [
     subtitle: "13-Sep-44",
     coords: [43.962139, 12.60289],
     caption: "8th Army Clasp",
-    text: "8th Army broke through the Gothic Defence line after this battle"
+    text: "8th Army broke through the Gothic Defence line after this battle",
+    drawLineAfterPoint: false
   },
   {
     id: 33,
@@ -284,7 +326,8 @@ const stops = [
     subtitle: "1-Mar-45",
     coords: [44.51767399, 11.27713028],
     caption: "Italy visit",
-    text: "Army base was in this region and Dave wanted to visit here in 1984"
+    text: "Army base was in this region and Dave wanted to visit here in 1984",
+    drawLineAfterPoint: false
   },
   {
     id: 34,
@@ -292,7 +335,8 @@ const stops = [
     subtitle: "28-Apr-45",
     coords: [44.888187, 11.618976],
     caption: "Propaganda leaflet",
-    text: "The Eighth Army crossed the Po River"
+    text: "The Eighth Army crossed the Po River",
+    drawLineAfterPoint: false
   },
   {
     id: 35,
@@ -300,7 +344,8 @@ const stops = [
     subtitle: "2-May-45",
     coords: [45.43959563, 12.32000556],
     caption: "Post cards",
-    text: "8th Army advanced pushing out German troops"
+    text: "8th Army advanced pushing out German troops",
+    drawLineAfterPoint: false
   },
   {
     id: 36,
@@ -308,7 +353,8 @@ const stops = [
     subtitle: "4-May-45",
     coords: [45.6620536, 13.10727859],
     caption: "Post cards",
-    text: "8th Army advanced pushing out German troops"
+    text: "8th Army advanced pushing out German troops",
+    drawLineAfterPoint: false
   },
   {
     id: 37,
@@ -316,7 +362,8 @@ const stops = [
     subtitle: "6-May-45",
     coords: [46.07158986, 13.22734407],
     caption: "Post cards",
-    text: "8th Army advanced pushing out German troops"
+    text: "8th Army advanced pushing out German troops",
+    drawLineAfterPoint: false
   },
   {
     id: 38,
@@ -324,7 +371,8 @@ const stops = [
     subtitle: "8-May-45",
     coords: [45.65063026, 13.7664945],
     caption: "Newspaper",
-    text: "Germany OUT!"
+    text: "Germany OUT!",
+    drawLineAfterPoint: true
   },
   {
     id: 39,
@@ -332,7 +380,8 @@ const stops = [
     subtitle: "8-Aug-45",
     coords: [30.04551445, 31.23700314],
     caption: "Army cards",
-    text: "Demobilised - end of war"
+    text: "Demobilised - end of war",
+    drawLineAfterPoint: true
   },
   {
     id: 40,
@@ -340,6 +389,21 @@ const stops = [
     subtitle: "9-Aug-45",
     coords: [-1.29630618, 36.82677128],
     caption: "Newspaper",
-    text: "Plane in Nairobi to re-fuel on the way to South Africa"
+    text: "Plane in Nairobi to re-fuel on the way to South Africa",
+    drawLineAfterPoint: false,
+    routeFromPrev: [
+      [30.04551445, 31.23700314],
+      [29.2, 32.4],
+      [27.9, 33.6],
+      [26.1, 34.8],
+      [23.8, 36.0],
+      [20.9, 37.3],
+      [17.2, 38.5],
+      [13.0, 39.6],
+      [8.7, 40.5],
+      [4.2, 40.8],
+      [0.5, 39.8],
+      [-1.29630618, 36.82677128]
+    ]
   }
 ];
